@@ -9,7 +9,16 @@ export default function Form() {
     email: "",
     passWord: "",
   });
-
+  const handleChangeValue = (event) => {
+    let { name, value} = event.target
+    setValues ({
+      ...values, [name]: [value]
+    })
+  }
+const handleSubmit = (event) => {
+  event.preventDefault()
+  //console.log(values)
+}
   return (
     <div
       className="container-fluid"
@@ -36,6 +45,7 @@ export default function Form() {
                 type="text"
                 name="firstName"
                 required
+                onChange={handleChangeValue}
               />
               <span className="highlight" />
               <span className="bar" />
@@ -49,6 +59,7 @@ export default function Form() {
                 value={values.lastName}
                 name="lastName"
                 required
+                onChange={handleChangeValue}
               />
               <span className="highlight" />
               <span className="bar" />
@@ -64,6 +75,7 @@ export default function Form() {
                 type="text"
                 name="userName"
                 required
+                onChange={handleChangeValue}
               />
               <span className="highlight" />
               <span className="bar" />
@@ -74,7 +86,9 @@ export default function Form() {
         <div className="row">
           <div className="col-12">
             <div className="group">
-              <input value={values.email} type="email" name="email" required />
+              <input value={values.email} type="email" name="email" required 
+              onChange={handleChangeValue}
+              />
               <span className="highlight" />
               <span className="bar" />
               <label>email</label>
@@ -89,6 +103,7 @@ export default function Form() {
                 name="passWord"
                 type="password"
                 required
+                onChange={handleChangeValue}
               />
               <span className="highlight" />
               <span className="bar" />
@@ -101,8 +116,9 @@ export default function Form() {
             className="btn text-white bg-dark w-100 col-12"
             style={{fontSize: 25}}
             type="submit"
+            onSubmit={handleSubmit}
           >
-            Submit
+            Submit 
           </button>
         </div>
       </form>
