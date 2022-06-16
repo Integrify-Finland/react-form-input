@@ -10,6 +10,15 @@ export default function Form() {
     passWord: "",
   });
 
+  function handleChangeValue(event) {
+    let {name, value} = event.target
+    setValues({...values, [name] : value})
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    console.log(values)
+  }
   return (
     <div
       className="container-fluid"
@@ -25,6 +34,7 @@ export default function Form() {
             'font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif',
           width: 600,
         }}
+        onSubmit={handleSubmit}
         className=" bg-white p-5 m-5"
       >
         <h1 className="text-center mt-0 mb-5">User Profile</h1>
@@ -36,6 +46,7 @@ export default function Form() {
                 type="text"
                 name="firstName"
                 required
+                onChange={handleChangeValue}
               />
               <span className="highlight" />
               <span className="bar" />
@@ -49,6 +60,7 @@ export default function Form() {
                 value={values.lastName}
                 name="lastName"
                 required
+                onChange={handleChangeValue}
               />
               <span className="highlight" />
               <span className="bar" />
@@ -64,6 +76,7 @@ export default function Form() {
                 type="text"
                 name="userName"
                 required
+                onChange={handleChangeValue}
               />
               <span className="highlight" />
               <span className="bar" />
@@ -74,7 +87,9 @@ export default function Form() {
         <div className="row">
           <div className="col-12">
             <div className="group">
-              <input value={values.email} type="email" name="email" required />
+              <input value={values.email} type="email" name="email" required
+              onChange={handleChangeValue}
+              />
               <span className="highlight" />
               <span className="bar" />
               <label>email</label>
@@ -89,6 +104,7 @@ export default function Form() {
                 name="passWord"
                 type="password"
                 required
+                onChange={handleChangeValue}
               />
               <span className="highlight" />
               <span className="bar" />
